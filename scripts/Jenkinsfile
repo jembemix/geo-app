@@ -3,7 +3,6 @@ pipeline{
     tools{
         maven 'M2_HOME'
     }
-
     stages{
         stage('clean'){
             steps{
@@ -20,6 +19,12 @@ pipeline{
                 sh 'mvn package'
             }
         }
+        stage('artfactory'){
+            steps{
+                sh 'curl -uadmin:AP5Axoc67BTnVfLkWrnbd5yNiuM -T target/bio*.jar "http://18.204.6.73:8081/artifactory/marionprof/profmrn"'
+            }
+        }
+    
        
     }
 }
